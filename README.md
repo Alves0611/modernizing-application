@@ -29,7 +29,7 @@ The modernization of the `kube-news` application focuses on incorporating tools 
 
 ## Prometheus Metrics 📊
 
-![Prometheus Metrics]![](./images/prometheus.png)
+![](./images/prometheus.png)
 
 ## Grafana Dashboard 📊
 
