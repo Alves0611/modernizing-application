@@ -1,0 +1,7 @@
+services:
+  kubenews:
+    build:
+      context: .
+      dockerfile: .devcontainer/dockerfile.dev
+    volumes:
+      - .:/app:cached
