@@ -5,3 +5,26 @@ services:
       dockerfile: .devcontainer/dockerfile.dev
     volumes:
       - .:/app:cached
+  prometheus:
+    image: prom/prometheus:v2.49.1
+    ports:
+      - 9090:9090
+    depends_on:
+      - kubenews
+    volumes:
+      - .docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - kubenews
+  grafana:
+    image: grafana/grafana:9.5.15
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
+    networks:
+      - kubenews
+    volumes:
+      - ".docker/grafana/grafana.ini:/etc/grafana/grafana.ini"
+      - ".docker/grafana/provisioning/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml"
+      - ".docker/grafana/provisioning/dashboard.yml:/etc/grafana/provisioning/dashboards/dashboard.yml"
+      - ".docker/grafana/dashboard:/var/lib/grafana/dashboards"
